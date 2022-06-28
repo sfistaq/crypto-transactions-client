@@ -1,0 +1,112 @@
+export const tableHeadItems: ITableHead[] = [
+  {
+    title: "date",
+    sortLabel: "timestamp",
+  },
+  {
+    title: "from",
+  },
+  {
+    title: "receiver",
+  },
+  {
+    title: "amount",
+    sortLabel: "amount",
+  },
+  {
+    title: "fee",
+    sortLabel: "transactionFee",
+  },
+  {
+    title: "message",
+    sortLabel: "message",
+  },
+  {
+    title: "gif keyword",
+    sortLabel: "keyword",
+  },
+];
+
+export const mockTransactions: TransactionType[] = [
+  {
+    amount: "3",
+    from: "0x0",
+    receiver: "0x0",
+    timestamp: "2021-01-01T00:00:00.000Z",
+    message: "test transaction #3",
+    keyword: "test gif keyword #3",
+    transactionFee: "0.1",
+  },
+  {
+    amount: "4",
+    from: "0x0",
+    receiver: "0x0",
+    timestamp: "2022-01-03T00:00:00.000Z",
+    message: "test transaction #4",
+    keyword: "test gif keyword #4",
+    transactionFee: "0.2",
+  },
+  {
+    amount: "3",
+    from: "0x0",
+    receiver: "0x0",
+    timestamp: "2021-04-01T00:00:00.000Z",
+    message: "test transaction #5",
+    keyword: "test gif keyword #5",
+    transactionFee: "0.1",
+  },
+  {
+    amount: "4",
+    from: "0x0",
+    receiver: "0x0",
+    timestamp: "2022-07-01T00:00:00.000Z",
+    message: "test transaction #6",
+    keyword: "test gif keyword #6",
+    transactionFee: "0.2",
+  },
+  {
+    amount: "3",
+    from: "0x0",
+    receiver: "0x0",
+    timestamp: "2021-09-01T00:00:00.000Z",
+    message: "test transaction #7",
+    keyword: "test gif keyword #7",
+    transactionFee: "0.1",
+  },
+  {
+    amount: "4",
+    from: "0x0",
+    receiver: "0x0",
+    timestamp: "2022-11-01T00:00:00.000Z",
+    message: "test transaction #8",
+    keyword: "test gif keyword #8",
+    transactionFee: "0.2",
+  },
+  {
+    amount: "4",
+    from: "0x0",
+    receiver: "0x0",
+    timestamp: "2022-12-01T00:00:00.000Z",
+    message: "test transaction #9",
+    keyword: "test gif keyword #9",
+    transactionFee: "0.2",
+  },
+  {
+    amount: "4",
+    from: "0x0",
+    receiver: "0x0",
+    timestamp: "2020-11-11T00:00:00.000Z",
+    message: "test transaction #13",
+    keyword: "test gif keyword #13",
+    transactionFee: "0.2",
+  },
+  {
+    amount: "4",
+    from: "0x0",
+    receiver: "0x0",
+    timestamp: "2022-12-11T00:00:00.000Z",
+    message: "test transaction #12",
+    keyword: "test gif keyword #12",
+    transactionFee: "0.2",
+  },
+];
