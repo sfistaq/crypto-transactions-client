@@ -20,7 +20,9 @@ export const localProvider: ethers.providers.JsonRpcProvider =
 
 export const walletConnect = new WalletConnectConnector({
   rpc: {
-    [chainID]: `https://rinkeby.infura.io/v3/${process.env.REACT_APP_INFURA_KEY}`,
+    [chainID]: `https://rinkeby.infura.io/v3/${
+      process.env.REACT_APP_INFURA_KEY as string
+    }`,
   },
   qrcode: true,
   chainId: chainID,

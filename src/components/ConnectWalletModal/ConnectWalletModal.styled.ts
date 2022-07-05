@@ -8,7 +8,7 @@ export const Container = styled.div`
   row-gap: 20px;
 
   button {
-    width: 70%;
+    width: 90%;
   }
 
   svg {
@@ -17,6 +17,7 @@ export const Container = styled.div`
     left: 12px;
     border: 2px solid white;
     border-radius: 50%;
+    background-color: white;
   }
 `;
 
@@ -30,3 +31,4 @@ export const Title = styled(Typography)<TypographyProps>`
 `;
 
 // TODO STYLES FOR MOBILE
+// TODO ADD TESTS
