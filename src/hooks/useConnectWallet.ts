@@ -28,7 +28,7 @@ const useConnectWallet = () => {
     dispatch({ type: ActionsTypes.SET_TRANSACTIONS, payload: [] });
     dispatch({ type: ActionsTypes.SET_LOADING, payload: null });
 
-    localStorage.removeItem("walletconnect");
+    localStorage.clear();
 
     customToast(ToastType.INFO, "Wallet is disconnected", {
       toastId: "disconnect-wallet",

@@ -12,7 +12,7 @@ export const Backdrop = styled(MUIBackdrop)`
 `;
 
 export const Modal = styled(MUIDialog)`
-  .fDoITk {
+  .MuiPaper-elevation {
     background-color: transparent;
     margin: 0;
   }

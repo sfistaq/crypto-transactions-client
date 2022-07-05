@@ -19,7 +19,7 @@ const ConnectWalletModal = ({
   const { connectWallet, ConnectorType } = useConnectWallet();
   return (
     <Modal open={isOpen} onClose={onClose}>
-      <S.Container {...rest}>
+      <S.Container {...rest} data-testid="connect-modal-container">
         <S.Title>Connect your wallet with one of available provider</S.Title>
         <PrimaryButton
           text="Metamask"

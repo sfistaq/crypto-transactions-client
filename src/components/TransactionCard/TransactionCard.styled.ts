@@ -36,13 +36,13 @@ export const CardLink = styled(Link)`
 `;
 
 export const CardText = styled(Typography)<TypographyProps>`
-  color: ${({ theme: { palette } }) => palette.primary.contrastText};
   width: 275px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   letter-spacing: 1px;
   font-size: 0.9rem;
+  color: ${({ theme: { palette } }) => palette.primary.contrastText};
 
   &:nth-child(3) {
     margin-bottom: 5px;

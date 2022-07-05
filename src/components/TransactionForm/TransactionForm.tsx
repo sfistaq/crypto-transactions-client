@@ -96,7 +96,7 @@ const TransactionForm = () => {
           label={placeholderFormat(item)}
           size="small"
           type={item === InputFields.AMOUNT_ETH ? "number" : "text"}
-          helperText={errors?.[item]?.message as string}
+          helperText={errors?.[item]?.message as unknown as string}
           disabled={loading === LoadingType.TRANSACTION_PENDING}
           {...register(item)}
           variant="outlined"

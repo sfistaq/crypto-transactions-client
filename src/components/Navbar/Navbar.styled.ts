@@ -4,13 +4,19 @@ import { AiOutlineClose } from "react-icons/ai";
 import { AppBar, AppBarProps } from "@mui/material";
 import { device, size } from "../../styles";
 
-export const Container = styled(AppBar)<AppBarProps>`
+type ContainerPrps = {
+  scrolled?: string;
+};
+
+export const Container = styled(AppBar)<AppBarProps & ContainerPrps>`
   display: flex;
   align-items: center;
   height: 80px;
   box-shadow: none;
-  background: transparent;
-
+  background: ${({ scrolled, theme: { palette } }) =>
+    scrolled ? palette.background.navbar : "transparent"};
+  box-shadow: ${({ scrolled, theme: { shadows } }) => scrolled && shadows[10]};
+  ${({ scrolled, theme: { palette } }) => scrolled && palette.background.blur}
   @media ${device.up.tablet} {
     background: ${({ theme: { palette } }) => palette.background.navbar};
     box-shadow: ${({ theme: { shadows } }) => shadows[10]};

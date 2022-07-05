@@ -1,6 +1,6 @@
 import type { AppBarProps } from "@mui/material";
 import { useState, useEffect } from "react";
-import { usePageWide } from "../../hooks";
+import { usePageWide, useScrollPosition } from "../../hooks";
 import { size } from "../../styles/breakpoints";
 import * as S from "./Navbar.styled";
 
@@ -13,6 +13,7 @@ export type INavbarProps = {
 
 const Navbar = ({ links, icon, title, ...rest }: INavbarProps) => {
   const [toggleMenu, setToggleMenu] = useState<boolean>(false);
+  const { scrollPosition } = useScrollPosition();
   const { pageWide } = usePageWide();
 
   useEffect(() => {
@@ -22,7 +23,12 @@ const Navbar = ({ links, icon, title, ...rest }: INavbarProps) => {
   }, [pageWide, toggleMenu]);
 
   return (
-    <S.Container position="fixed" data-testid="navbar-container" {...rest}>
+    <S.Container
+      position="fixed"
+      scrolled={scrollPosition > 60 ? "scrolled" : ""}
+      data-testid="navbar-container"
+      {...rest}
+    >
       <S.NavbarWrapper>
         <S.LogoWrapper>
           {icon}
