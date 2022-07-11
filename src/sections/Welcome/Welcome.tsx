@@ -26,7 +26,7 @@ const Welcome = () => {
 
   return (
     <>
-      <S.Container>
+      <S.Container id="home">
         <S.LeftWrapper>
           {address && (
             <CreditCard

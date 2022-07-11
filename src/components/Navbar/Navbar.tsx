@@ -1,6 +1,6 @@
 import type { AppBarProps } from "@mui/material";
 import { useState, useEffect } from "react";
-import { usePageWide, useScrollPosition } from "../../hooks";
+import { usePageWide, useScrollPosition, useConnectWallet } from "../../hooks";
 import { size } from "../../styles/breakpoints";
 import * as S from "./Navbar.styled";
 
@@ -14,7 +14,14 @@ export type INavbarProps = {
 const Navbar = ({ links, icon, title, ...rest }: INavbarProps) => {
   const [toggleMenu, setToggleMenu] = useState<boolean>(false);
   const { scrollPosition } = useScrollPosition();
+  const { active } = useConnectWallet();
   const { pageWide } = usePageWide();
+
+  const closeOnOverlay = (event: React.MouseEvent) => {
+    if ((event.target as Element).classList.contains("MuiBackdrop-root")) {
+      setToggleMenu(false);
+    }
+  };
 
   useEffect(() => {
     if (pageWide > size.tablet && toggleMenu) {
@@ -25,36 +32,52 @@ const Navbar = ({ links, icon, title, ...rest }: INavbarProps) => {
   return (
     <S.Container
       position="fixed"
-      scrolled={scrollPosition > 60 ? "scrolled" : ""}
+      scrolled={!toggleMenu && scrollPosition > 60 ? "scrolled" : ""}
       data-testid="navbar-container"
       {...rest}
     >
       <S.NavbarWrapper>
-        <S.LogoWrapper>
-          {icon}
-          {title}
-        </S.LogoWrapper>
-        {pageWide > size.tablet && (
+        {!toggleMenu && (
+          <S.LogoWrapper>
+            {icon}
+            {title}
+          </S.LogoWrapper>
+        )}
+        {active && pageWide > size.tablet && (
           <S.LinksWrapper>
             {links.map((item: string) => (
               <S.NavLink
+                to={item}
+                smooth
+                spy
+                hashSpy
                 data-testid="navbar-link"
                 key={`nav-link-${item}`}
                 role="link"
+                offset={item === "home" ? -120 : -80}
+                duration={500}
               >
-                {item}
+                <S.LinkText variant="button">{item}</S.LinkText>
               </S.NavLink>
             ))}
           </S.LinksWrapper>
         )}
-        {pageWide < size.tablet && !toggleMenu && (
+        {active && pageWide < size.tablet && !toggleMenu && (
           <S.OpenMobileMenuIcon
             onClick={() => setToggleMenu(true)}
             data-testid="sidebar-open-button"
           />
         )}
-        {pageWide < size.tablet && toggleMenu && (
-          <S.MobileMenuWrapper data-testid="sidebar-container">
+      </S.NavbarWrapper>
+      {active && pageWide < size.tablet && toggleMenu && (
+        <S.MobileBackdrop
+          open={toggleMenu}
+          onClick={(event: React.MouseEvent) => closeOnOverlay(event)}
+        >
+          <S.MobileMenuWrapper
+            data-testid="sidebar-container"
+            style={{ backdropFilter: "blur(10px) !important" }}
+          >
             <S.CloseMobileMenuIcon
               onClick={() => setToggleMenu(false)}
               data-testid="sidebar-close-button"
@@ -62,15 +85,26 @@ const Navbar = ({ links, icon, title, ...rest }: INavbarProps) => {
 
             {links.map((item: string) => (
               <S.NavLink
+                to={item}
+                smooth
+                spy
+                hashSpy
                 key={`mobile-nav-link-${item}`}
                 data-testid="sidebar-link"
+                duration={500}
+                offset={item === "home" ? -120 : -80}
+                onClick={() => {
+                  setTimeout(() => {
+                    setToggleMenu(false);
+                  }, 500);
+                }}
               >
-                {item}
+                <S.LinkText variant="button">{item}</S.LinkText>
               </S.NavLink>
             ))}
           </S.MobileMenuWrapper>
-        )}
-      </S.NavbarWrapper>
+        </S.MobileBackdrop>
+      )}
     </S.Container>
   );
 };

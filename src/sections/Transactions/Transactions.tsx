@@ -41,10 +41,6 @@ const Transactions = () => {
     if (address) {
       getAllTransactions();
     }
-
-    // return () => {
-    //   setToggleView(ToggleViewButtons.CARDS);
-    // };
   }, [address]);
 
   useEffect(() => {
@@ -62,7 +58,10 @@ const Transactions = () => {
   }, [pageWide]);
 
   return (
-    <S.Container isLoading={loading === LoadingType.FETCH_TRANSACTIONS}>
+    <S.Container
+      id="transactions"
+      isLoading={loading === LoadingType.FETCH_TRANSACTIONS}
+    >
       {address &&
         transactions.length > 0 &&
         loading !== LoadingType.FETCH_TRANSACTIONS && (

@@ -12,9 +12,12 @@ export const Backdrop = styled(MUIBackdrop)`
 `;
 
 export const Modal = styled(MUIDialog)`
-  .MuiPaper-elevation {
-    background-color: transparent;
-    margin: 0;
+  div {
+    &:first-child {
+      background-color: transparent;
+      margin: 0;
+      border-radius: ${({ theme }) => theme.shape.borderRadius}px;
+    }
   }
 `;
 
