@@ -25,10 +25,16 @@ export const DialogContent = styled(MUIDialogContent)`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: ${({ theme: { palette } }) => palette.background.modal};
+  background-color: ${({ theme: { palette } }) => palette.background.modal};
   box-shadow: ${({ theme: { shadows } }) => shadows[10]};
   ${({ theme: { palette } }) => palette.background.blur};
   padding: 40px 5px;
+  border-radius: ${({ theme }) => theme.shape.borderRadius}px;
+
+  .MuiCardContent-root {
+    border: 2px solid ${({ theme }) => theme.palette.primary.contrastText};
+    backdrop-filter: blur(10px);
+  }
 
   @media ${device.up.custom(345)} {
     padding: 40px 15px;
@@ -39,7 +45,7 @@ export const DialogContent = styled(MUIDialogContent)`
   }
 
   @media ${device.up.mobileL} {
-    padding: 40px;
+    padding: 40px 30px;
   }
 `;
 
