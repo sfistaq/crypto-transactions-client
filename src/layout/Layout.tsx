@@ -9,11 +9,11 @@ export type ILayoutProps = {
   children: React.ReactNode;
 } & React.HTMLAttributes<HTMLDivElement>;
 
-// const navLinks = ["home", "transactions"];
+const navLinks = ["home", "transactions"];
 
 const Layout = ({ children, ...rest }: ILayoutProps) => (
   <S.Container component="main" {...rest}>
-    <Navbar links={[]} icon={<SiEthereum />} title="ETH Transactions" />
+    <Navbar links={navLinks} icon={<SiEthereum />} title="ETH Transactions" />
     {children}
 
     <ToastContainer role="alert" newestOnTop />

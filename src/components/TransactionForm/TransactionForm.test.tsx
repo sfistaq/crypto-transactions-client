@@ -1,4 +1,4 @@
-import { screen } from "@testing-library/react";
+import { screen, fireEvent } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks";
 import { renderWithAllProviders, theme } from "../../helpers";
 import useFormInputs from "./useFormInputs";
@@ -24,7 +24,7 @@ describe("TransactionFrom component", () => {
 
     const inputs = screen.queryAllByTestId(
       "transaction-form-input"
-    ) as HTMLLIElement[];
+    ) as HTMLInputElement[];
 
     const submitButton = screen.getByTestId(
       "transaction-form-submit-button"
@@ -47,6 +47,13 @@ describe("TransactionFrom component", () => {
       ).toBeInTheDocument();
     });
 
-    // TODO ADD TEST FOR FORM VALIDATION
+    inputs.forEach((item: HTMLInputElement) => {
+      fireEvent.change(item, { target: { value: "test" } });
+      expect(item.value).toBe("test");
+    });
+
+    // const messageInput = screen.getByLabelText("Message") as HTMLInputElement;
+    // fireEvent.change(messageInput, { target: { value: "test" } });
+    // expect(messageInput.value).toBe("test");
   });
 });
