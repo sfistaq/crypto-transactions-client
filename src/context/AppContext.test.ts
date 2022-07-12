@@ -49,5 +49,4 @@ describe("AppContext Tests", () => {
       transactions: [],
     });
   });
-  // TODO ADD TEST FOR MOCKED SIGNER
 });

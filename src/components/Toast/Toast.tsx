@@ -3,7 +3,6 @@ import { config } from "../../config";
 
 const { TOAST_DEFAULT_CONFIG } = config;
 
-// eslint-disable-next-line no-shadow
 export enum ToastType {
   ERROR = "error",
   SUCCESS = "success",

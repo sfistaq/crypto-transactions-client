@@ -1,4 +1,4 @@
-import { screen, act, fireEvent } from "@testing-library/react";
+import { screen, fireEvent } from "@testing-library/react";
 import { renderWithAllProviders, theme } from "../../helpers";
 import TransactionCard from "./TransactionCard";
 
@@ -13,7 +13,7 @@ const mockTransaction: TransactionType = {
 };
 
 describe("TransactionCard component", () => {
-  it("should render card", async () => {
+  it("should render card", () => {
     renderWithAllProviders(
       <TransactionCard loading={false} transaction={mockTransaction} />
     );
@@ -57,14 +57,7 @@ describe("TransactionCard component", () => {
     const itemsWithTooltip = [from, receiver, amount];
 
     itemsWithTooltip.forEach(async (item) => {
-      act(() => {
-        fireEvent(
-          item,
-          new MouseEvent("mouseover", {
-            bubbles: true,
-          })
-        );
-      });
+      fireEvent.click(item);
       const tooltip = await screen.findByRole("tooltip");
       expect(tooltip).toBeInTheDocument();
     });

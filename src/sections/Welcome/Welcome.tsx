@@ -10,7 +10,6 @@ import {
   PrimaryButton,
   ConnectWalletModal,
 } from "../../components";
-
 import * as S from "./Welcome.styled";
 
 const Welcome = () => {
@@ -25,40 +24,38 @@ const Welcome = () => {
     active ? disconnectWallet() : setShowConnectModal(true);
 
   return (
-    <>
-      <S.Container id="home">
-        <S.LeftWrapper>
-          {address && (
-            <CreditCard
-              balance={balance}
-              currency={symbol}
-              address={address}
-              icon={<SiEthereum />}
-            />
-          )}
-          {!address && (
-            <S.Text variant="subtitle1">
-              connect wallet to see latest transactions
-            </S.Text>
-          )}
-          <PrimaryButton
-            color="primary"
-            text={active ? "Disconnect Wallet" : "Connect Wallet"}
-            icon={<IoIosWallet />}
-            handleClick={handleConnect}
+    <S.Container id="home">
+      <S.LeftWrapper>
+        {address && (
+          <CreditCard
+            balance={balance}
+            currency={symbol}
+            address={address}
+            icon={<SiEthereum />}
           />
-        </S.LeftWrapper>
-        <S.RightWrapper>
-          <TransactionForm />
-        </S.RightWrapper>
-      </S.Container>
+        )}
+        {!address && (
+          <S.Text variant="subtitle1">
+            connect wallet to see latest transactions
+          </S.Text>
+        )}
+        <PrimaryButton
+          color="primary"
+          text={active ? "Disconnect Wallet" : "Connect Wallet"}
+          icon={<IoIosWallet />}
+          handleClick={handleConnect}
+        />
+      </S.LeftWrapper>
+      <S.RightWrapper>
+        <TransactionForm />
+      </S.RightWrapper>
       {showConnectModal && (
         <ConnectWalletModal
           isOpen={showConnectModal}
           onClose={() => setShowConnectModal(false)}
         />
       )}
-    </>
+    </S.Container>
   );
 };
 export default Welcome;

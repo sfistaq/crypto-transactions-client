@@ -25,10 +25,5 @@ export const Title = styled(Typography)<TypographyProps>`
   color: ${({ theme: { palette } }) => palette.primary.contrastText};
   letter-spacing: 0.5px;
   margin: 15px 0;
-  /* padding: 0 20px; */
-  /* font-size: ${({ theme: { typography } }) =>
-    typography.subtitle2.fontSize}; */
+  text-align: center;
 `;
-
-// TODO STYLES FOR MOBILE
-// TODO ADD TESTS

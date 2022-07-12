@@ -19,7 +19,6 @@ const PrimaryButton = ({
     onClick={handleClick}
     variant="contained"
     endIcon={icon}
-    data-testid="connect-button"
   >
     {text}
   </S.PrimaryButton>

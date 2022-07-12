@@ -5,7 +5,7 @@ import { tableHeadItems, mockTransactions } from "../../data";
 import TableHead from "./TableHead";
 
 describe("TableHead component", () => {
-  it("should render table head", async () => {
+  it("should render table head", () => {
     renderWithAllProviders(
       <Table>
         <TableHead

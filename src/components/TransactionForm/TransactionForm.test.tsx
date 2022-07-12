@@ -22,9 +22,11 @@ describe("TransactionFrom component", () => {
       "transaction-form-container"
     ) as HTMLFormElement;
 
-    const inputs = screen.queryAllByTestId(
-      "transaction-form-input"
-    ) as HTMLInputElement[];
+    const inputs: HTMLInputElement[] = [];
+
+    Object.values(inputsObj).forEach((item) => {
+      inputs.push(screen.getByLabelText(`${placeholderFormat(item)}`));
+    });
 
     const submitButton = screen.getByTestId(
       "transaction-form-submit-button"
@@ -48,12 +50,8 @@ describe("TransactionFrom component", () => {
     });
 
     inputs.forEach((item: HTMLInputElement) => {
-      fireEvent.change(item, { target: { value: "test" } });
-      expect(item.value).toBe("test");
+      fireEvent.change(item, { target: { value: "12345678" } });
+      expect(item.value).toBe("12345678");
     });
-
-    // const messageInput = screen.getByLabelText("Message") as HTMLInputElement;
-    // fireEvent.change(messageInput, { target: { value: "test" } });
-    // expect(messageInput.value).toBe("test");
   });
 });

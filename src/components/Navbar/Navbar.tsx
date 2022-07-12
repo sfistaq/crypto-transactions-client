@@ -1,6 +1,6 @@
 import type { AppBarProps } from "@mui/material";
 import { useState, useEffect } from "react";
-import { usePageWide, useScrollPosition, useConnectWallet } from "../../hooks";
+import { usePageWide, useScrollPosition } from "../../hooks";
 import { size } from "../../styles/breakpoints";
 import * as S from "./Navbar.styled";
 
@@ -8,13 +8,13 @@ export type INavbarProps = {
   links: string[];
   icon: JSX.Element;
   title: string;
+  active: boolean;
 } & React.HTMLAttributes<HTMLHeadElement> &
   AppBarProps;
 
-const Navbar = ({ links, icon, title, ...rest }: INavbarProps) => {
+const Navbar = ({ links, icon, title, active, ...rest }: INavbarProps) => {
   const [toggleMenu, setToggleMenu] = useState<boolean>(false);
   const { scrollPosition } = useScrollPosition();
-  const { active } = useConnectWallet();
   const { pageWide } = usePageWide();
 
   const closeOnOverlay = (event: React.MouseEvent) => {
@@ -51,7 +51,6 @@ const Navbar = ({ links, icon, title, ...rest }: INavbarProps) => {
                 smooth
                 spy
                 hashSpy
-                data-testid="navbar-link"
                 key={`nav-link-${item}`}
                 role="link"
                 offset={item === "home" ? -120 : -80}

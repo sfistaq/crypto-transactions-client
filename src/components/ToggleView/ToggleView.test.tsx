@@ -8,7 +8,7 @@ enum ToggleViewButtons {
 }
 
 describe("ToggleView component", () => {
-  it("should render buttons", async () => {
+  it("should render buttons", () => {
     const mockFun = jest.fn();
     renderWithAllProviders(
       <ToggleView
@@ -41,9 +41,6 @@ describe("ToggleView component", () => {
     const button2 = screen.getByText(
       ToggleViewButtons.BUTTON2
     ) as HTMLButtonElement;
-
     expect(button2).toHaveStyle(`background-color: transparent`);
-
-    // TODO ADD TEST FOR ON CLICK
   });
 });
