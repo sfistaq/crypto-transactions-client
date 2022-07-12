@@ -3,7 +3,7 @@ import { renderWithAllProviders, theme } from "../../helpers";
 import PrimaryButton from "./PrimaryButton";
 
 describe("PrimaryButton component", () => {
-  it("should render primary button", async () => {
+  it("should render primary button", () => {
     renderWithAllProviders(
       <PrimaryButton
         handleClick={jest.fn()}
@@ -11,18 +11,16 @@ describe("PrimaryButton component", () => {
         color="primary"
       />
     );
-    const primaryButton = screen.getByTestId(
-      "connect-button"
-    ) as HTMLButtonElement;
+    const primaryButton = screen.getByRole("button") as HTMLButtonElement;
     expect(primaryButton).toBeInTheDocument();
     expect(primaryButton).toHaveTextContent("Connect Wallet");
-    expect(primaryButton).toHaveStyle(`color: ${theme.palette.common.white}`);
-    expect(primaryButton).toHaveStyle(
-      `background-color: ${theme.palette.primary.main}`
-    );
+    expect(primaryButton).toHaveStyle(`
+    color: ${theme.palette.common.white};
+    background-color: ${theme.palette.primary.main};
+    `);
   });
 
-  it("should render secondary button", async () => {
+  it("should render secondary button", () => {
     renderWithAllProviders(
       <PrimaryButton
         handleClick={jest.fn()}
@@ -30,24 +28,20 @@ describe("PrimaryButton component", () => {
         color="secondary"
       />
     );
-    const connectButton = screen.getByTestId(
-      "connect-button"
-    ) as HTMLButtonElement;
+    const connectButton = screen.getByRole("button") as HTMLButtonElement;
     expect(connectButton).toBeInTheDocument();
     expect(connectButton).toHaveTextContent("Connect Wallet");
-    expect(connectButton).toHaveStyle(`color: ${theme.palette.common.white}`);
-    expect(connectButton).toHaveStyle(
-      `background-color: ${theme.palette.secondary.main}`
-    );
+    expect(connectButton).toHaveStyle(`
+    color: ${theme.palette.common.white};
+    background-color: ${theme.palette.secondary.main};
+    `);
   });
 
-  it("should render disabled button", async () => {
+  it("should render disabled button", () => {
     renderWithAllProviders(
       <PrimaryButton handleClick={jest.fn()} text="Connect Wallet" disabled />
     );
-    const connectButton = screen.getByTestId(
-      "connect-button"
-    ) as HTMLButtonElement;
+    const connectButton = screen.getByRole("button") as HTMLButtonElement;
     expect(connectButton).toBeInTheDocument();
     expect(connectButton).toHaveTextContent("Connect Wallet");
     expect(connectButton).toHaveAttribute("disabled");

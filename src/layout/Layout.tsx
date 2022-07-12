@@ -1,7 +1,7 @@
 import { ToastContainer } from "react-toastify";
 import { SiEthereum } from "react-icons/si";
-
 import "react-toastify/dist/ReactToastify.css";
+import { useConnectWallet } from "../hooks";
 import { Navbar } from "../components";
 import * as S from "./Layout.styled";
 
@@ -11,12 +11,21 @@ export type ILayoutProps = {
 
 const navLinks = ["home", "transactions"];
 
-const Layout = ({ children, ...rest }: ILayoutProps) => (
-  <S.Container component="main" {...rest}>
-    <Navbar links={navLinks} icon={<SiEthereum />} title="ETH Transactions" />
-    {children}
+const Layout = ({ children, ...rest }: ILayoutProps) => {
+  const { active } = useConnectWallet();
 
-    <ToastContainer role="alert" newestOnTop />
-  </S.Container>
-);
+  return (
+    <S.Container component="main" {...rest}>
+      <Navbar
+        links={navLinks}
+        icon={<SiEthereum />}
+        title="ETH Transactions"
+        active={active}
+      />
+      {children}
+
+      <ToastContainer role="alert" newestOnTop />
+    </S.Container>
+  );
+};
 export default Layout;

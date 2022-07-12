@@ -17,6 +17,4 @@ describe("Toast component", () => {
       });
     });
   });
-
-  // TODO ADD TEST FOR TOAST WITH LINK
 });

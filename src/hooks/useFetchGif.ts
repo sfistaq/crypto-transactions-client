@@ -56,7 +56,6 @@ const useFetchGif = (keyword: string) => {
           toastId: "fetch-gif-error",
         }
       );
-      // when gif not found in query put random gif from dummyGifs array
       setGifUrl(dummyGifs[randomNumberHelper(dummyGifs.length)]);
     }
     dispatch({

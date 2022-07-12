@@ -1,9 +1,10 @@
 import { screen, fireEvent } from "@testing-library/react";
+import { ThemeProvider } from "styled-components";
 import { renderWithAllProviders, theme } from "../../helpers";
 import ConnectWalletModal from "./ConnectWalletModal";
 
 describe("ConnectWalletModal component", () => {
-  it("should render and close modal on click ", () => {
+  it("should render and close modal on click close button", () => {
     const mockFun = jest.fn();
     const { rerender } = renderWithAllProviders(
       <ConnectWalletModal isOpen onClose={mockFun} />
@@ -26,6 +27,7 @@ describe("ConnectWalletModal component", () => {
       expect(button).toHaveTextContent(buttonsTitles[index]);
       expect(button).toHaveStyle(`
         color: ${theme.palette.primary.contrastText};
+        background-color: ${theme.palette.primary.main};
         cursor: pointer;
       `);
     });
@@ -39,7 +41,12 @@ describe("ConnectWalletModal component", () => {
     fireEvent.click(closeButton);
     expect(mockFun).toBeCalledTimes(1);
 
-    rerender(<ConnectWalletModal isOpen={false} onClose={mockFun} />);
+    rerender(
+      <ThemeProvider theme={theme}>
+        <ConnectWalletModal isOpen={false} onClose={mockFun} />
+      </ThemeProvider>
+    );
+
     expect(container).not.toBeInTheDocument();
   });
 });

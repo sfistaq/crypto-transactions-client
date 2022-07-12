@@ -8,17 +8,18 @@ describe("Navbar component", () => {
   const mockLinks = ["link1", "link2", "link3"];
   const title = "navbar test title";
 
-  it("should render desktop view", async () => {
+  it("should render desktop view", () => {
     act(() => {
       resizeWindow(size.laptop);
     });
     renderWithAllProviders(
-      <Navbar links={mockLinks} icon={<SiEthereum />} title={title} />
+      <Navbar links={mockLinks} icon={<SiEthereum />} title={title} active />
     );
+
     const container = screen.getByTestId("navbar-container") as HTMLDivElement;
     const icon = screen.getByRole("img") as HTMLImageElement;
     const header = screen.getByText(title) as HTMLHeadElement;
-    const navBarLinks = screen.getAllByTestId("navbar-link") as HTMLLIElement[];
+    const navBarLinks = screen.getAllByRole("link") as HTMLLIElement[];
     const navBarElements = [container, header, icon, ...navBarLinks];
     navBarElements.forEach((item) => {
       expect(item).toBeInTheDocument();
@@ -27,13 +28,13 @@ describe("Navbar component", () => {
     expect(container).toHaveStyle(`background-color: transparent`);
   });
 
-  it("should toggle mobile sidebar", async () => {
+  it("should toggle mobile sidebar", () => {
     act(() => {
       resizeWindow(size.mobileS);
     });
 
     renderWithAllProviders(
-      <Navbar links={mockLinks} icon={<SiEthereum />} title={title} />
+      <Navbar links={mockLinks} icon={<SiEthereum />} title={title} active />
     );
     const container = screen.getByTestId("navbar-container") as HTMLDivElement;
     const icon = screen.getByRole("img") as HTMLImageElement;
@@ -47,14 +48,7 @@ describe("Navbar component", () => {
     });
     expect(container).toHaveStyle(`background-color: transparent`);
 
-    act(() => {
-      fireEvent(
-        mobileOpen,
-        new MouseEvent("click", {
-          bubbles: true,
-        })
-      );
-    });
+    fireEvent.click(mobileOpen);
 
     const sidebar = screen.getByTestId("sidebar-container") as HTMLDivElement;
     const navMobileLinks = screen.getAllByTestId(
@@ -63,25 +57,19 @@ describe("Navbar component", () => {
     const closeMobile = screen.getByTestId(
       "sidebar-close-button"
     ) as HTMLButtonElement;
-    expect(sidebar).toBeInTheDocument();
+
+    const mobileMenuElements = [sidebar, closeMobile, ...navMobileLinks];
+
+    mobileMenuElements.forEach((item) => {
+      expect(item).toBeInTheDocument();
+    });
+
     expect(sidebar).toHaveStyle(
       `background-color: ${theme.palette.background.navbar}`
     );
-    expect(closeMobile).toBeInTheDocument();
-    navMobileLinks.forEach((item) => {
-      expect(item).toBeInTheDocument();
-    });
     expect(navMobileLinks.length).toBe(mockLinks.length);
 
-    act(() => {
-      fireEvent(
-        closeMobile,
-        new MouseEvent("click", {
-          bubbles: true,
-        })
-      );
-    });
-
+    fireEvent.click(closeMobile);
     expect(sidebar).not.toBeInTheDocument();
   });
 });

@@ -4,12 +4,10 @@ import { mockTransactions } from "./data";
 import Table from "./Table";
 
 describe("Table component", () => {
-  it("should render table", async () => {
+  it("should render table", () => {
     const transaction = [mockTransactions[0], mockTransactions[1]];
     renderWithAllProviders(<Table transactions={transaction} />);
-    const tableContainer = screen.getByTestId(
-      "table-container"
-    ) as HTMLTableElement;
+    const tableContainer = screen.getByRole("table") as HTMLTableElement;
     const tableHead = screen.getByTestId(
       "table-head-container"
     ) as HTMLTableSectionElement;
@@ -35,7 +33,7 @@ describe("Table component", () => {
     );
   });
 
-  it("should render table pagination", async () => {
+  it("should render table pagination", () => {
     renderWithAllProviders(<Table transactions={mockTransactions} />);
 
     const tablePagination = screen.getByTestId("table-pagination");

@@ -32,5 +32,3 @@ const ToggleView = <T,>({
 );
 
 export default ToggleView;
-
-// TODO TEST STYLE AFTER CLICK

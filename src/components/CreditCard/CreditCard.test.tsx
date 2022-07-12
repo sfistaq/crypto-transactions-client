@@ -1,4 +1,4 @@
-import { screen, act, fireEvent } from "@testing-library/react";
+import { screen, fireEvent } from "@testing-library/react";
 import { SiEthereum } from "react-icons/si";
 import CreditCard from "./CreditCard";
 import { renderWithAllProviders, theme } from "../../helpers";
@@ -27,22 +27,16 @@ describe("CreditCard component", () => {
       expect(item).toBeInTheDocument();
     });
 
-    expect(card).toHaveStyle(`background-color: ${theme.palette.purple.main}`);
-    expect(card).toHaveStyle(
-      `background-image: ${theme.palette.background.creditCard}`
-    );
-    expect(card).toHaveStyle(`color: ${theme.palette.primary.contrastText}`);
+    expect(card).toHaveStyle(`
+    background-color: ${theme.palette.purple.main};
+    background-image: ${theme.palette.background.creditCard};
+    color: ${theme.palette.primary.contrastText}
+    `);
 
-    act(() => {
-      fireEvent(
-        address,
-        new MouseEvent("mouseover", {
-          bubbles: true,
-        })
-      );
-    });
+    fireEvent.mouseEnter(address);
 
     const tooltip = await screen.findByRole("tooltip");
+
     expect(tooltip).toBeInTheDocument();
     expect(tooltip).toHaveTextContent(mockAddress);
   });

@@ -6,8 +6,9 @@ describe("Pagination component", () => {
   const page = 1;
   const pageCount = 5;
   it("should render", async () => {
+    const mockFun = jest.fn();
     renderWithAllProviders(
-      <Pagination page={page} count={pageCount} onChange={jest.fn()} />
+      <Pagination page={page} count={pageCount} onChange={mockFun} />
     );
     const container = screen.getByTestId(
       "pagination-container"
@@ -31,7 +32,5 @@ describe("Pagination component", () => {
       `background-color: ${theme.palette.primary.main}`
     );
     expect(buttons[2]).toHaveStyle(`background-color: transparent`);
-
-    // TODO ADD TEST FOR ONCLICK
   });
 });

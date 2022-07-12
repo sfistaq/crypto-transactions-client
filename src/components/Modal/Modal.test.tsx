@@ -1,4 +1,5 @@
 import { screen, fireEvent } from "@testing-library/react";
+import { ThemeProvider } from "styled-components";
 import { renderWithAllProviders, theme } from "../../helpers";
 import Modal from "./Modal";
 
@@ -38,9 +39,11 @@ describe("Modal component", () => {
     expect(mockFun).toBeCalledTimes(1);
 
     rerender(
-      <Modal open={false} onClose={mockFun}>
-        <div>test</div>
-      </Modal>
+      <ThemeProvider theme={theme}>
+        <Modal open={false} onClose={mockFun}>
+          <div>test</div>
+        </Modal>
+      </ThemeProvider>
     );
     expect(container).not.toBeInTheDocument();
   });

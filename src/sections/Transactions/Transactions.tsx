@@ -80,7 +80,6 @@ const Transactions = () => {
               setToggleView={setToggleView}
             />
 
-            {/* //TODO CARDS GRID SEPARATE COMPONENT ?? */}
             {toggleView === ToggleViewButtons.CARDS && (
               <S.CardGrid>
                 {sortArrayObObj(

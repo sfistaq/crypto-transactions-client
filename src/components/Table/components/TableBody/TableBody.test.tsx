@@ -5,7 +5,7 @@ import { renderWithAllProviders, theme } from "../../../../helpers";
 import TableBody from "./TableBody";
 
 describe("TableBody component", () => {
-  it("should render table body", async () => {
+  it("should render table body", () => {
     renderWithAllProviders(
       <Table>
         <TableBody
